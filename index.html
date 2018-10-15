@@ -1,0 +1,52 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title> Allied Testing </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel ="stylesheet" href ="style/css/main.css" type ="text/css"/>
+	<style>
+	canvas:hover {	
+	transform:scale(1);
+		cursor:pointer;
+	}
+	
+	#indicators {
+	position: relative;
+	left:-34.7%;
+	top:110px;
+	}
+		
+	</style>
+	
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+</head>
+
+  <body>
+  <canvas id="graph" width="400" height="200" style="border:3px solid black;" margin ="40"></canvas>  
+   <input type="color" id="color"/>
+   
+	<canvas id="graph2" width="400" height="200" style="border:3px solid black;" ></canvas>
+	<button id="5m" >5m</button>
+	<button id="10m" >10m</button>
+	
+	<canvas id="indicators" width="400" height="100" style="border:3px solid black;" ></canvas>
+	<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+			<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+	
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+			
+			<script src ="main.js"></script>
+		
+			<button>Click</button>
+			<p id="test"></p>
+		
+	
+
+</body>
+
+</html>
