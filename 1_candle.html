@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title> Allied Testing </title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/styles/default.min.css">
+	<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.13.1/build/highlight.min.js"></script>
+	<style>
+		canvas {
+			border: 1px solid black;
+			margin: 5px;
+			display: block;
+		}
+
+		canvas:hover {
+			transform: scale(1);
+			cursor: pointer;
+		}
+
+		#indicators {
+			position: relative;
+			left: -34.7%;
+			top: 110px;
+		}
+	</style>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+</head>
+
+<body>
+	<h1>One Step at a Time </h1>
+	<h2>Draw cadle</h2>
+	<canvas id='candle' width="600" height="150">
+	</canvas>
+	<script>
+		var graph2 = document.getElementById("candle");
+		var ctxc = graph2.getContext("2d");
+		var negative = "red";
+		var equal = "gray";
+		var positive = "green";
+		function getColor(open, close){
+			return equal;
+		}
+		function candle(high, low, open, close, x) {
+			var fillColor = getColor(open, close);
+			console.log(high, low, open, close, 'color:', fillColor);
+			// h,l,o,c - это деньги
+			// x - это смещение от правого стороны экрана
+			//ctxc...
+		}
+		// прежде чем мы запрограммируем функцию представим себе что "а мы ее уже написали!"
+		// и попробуем ее использовать
+
+		// свеча с хвостиками и телом (зеленая)
+		candle(10, 2, 5, 8, 0);
+
+		// свеча с хвостиками и телом (зеленая)
+		candle(10, 2, 8, 5, 1);
+
+		//  хвостивоки есть (их просто не видно) (зеленая)
+		candle(10, 8, 10, 8, 2);
+
+		//  хвостивоки есть а тело тонкое
+		candle(10, 3, 8, 8, 3); 
+
+		///
+
+		function testGetColor(open, close, expected) {
+			var result = getColor(open, close);
+			if (result !== expected) {
+				console.log(`%c testGetColor ${open} ${close} is '${result}' != '${expected}'`, 'color:red');
+			} else {
+				console.log(`%c testGetColor ${open} ${close} is '${result}' PASSED`, 'color:green');
+			}
+		}
+		testGetColor(10, 10, equal)
+		testGetColor(30, 10, negative)
+		testGetColor(5, 10, positive)
+
+	</script>
+	<pre class="javascript">
+var graph2 = document.getElementById("candle");
+var ctxc = graph2.getContext("2d");
+var negative = "red";
+var equal = "gray";
+var positive = "green";
+
+// фукция которая возвращает цвет
+function getColor(open, close){
+    return equal;
+}
+
+// сначало нужно разработать простую функцию - рисование свечи
+// кажется что это просто, так оно на самом деле и есть,
+// но тут же возникает мысль что - а как же масштаб, а как же цвет? как риовать сетку? и тп? 
+// но нам нужно унять свои мысли и просто сконцентрироваться на создании первой версии простой функции
+
+function candle(high, low, open, close, x){
+    // h,l,o,c - это деньги
+    // x - шаг от правой стороны canvas
+    var fillColor = getColor(open, close);
+    // ....
+}
+// прежде чем мы запрограммируем функцию представим себе что "а мы ее уже написали!"
+// и попробуем ее использовать
+
+// свеча с хвостиками и телом (зеленая)
+candle(10, 2, 5, 8, 0);
+
+// свеча с хвостиками и телом (зеленая)
+candle(10, 2, 8, 5, 1);
+
+//  хвостивоки есть (их просто не видно) (зеленая)
+candle(10, 8, 10, 8, 2);
+
+//  хвостивоки есть а тело тонкое
+candle(10, 3, 8, 8, 3); 
+
+// проверяем функцию getColor
+function testGetColor(open, close, expected) {
+    var result = getColor(open, close);
+    if (result !== expected) {
+        console.log(`%c testGetColor ${open} ${close} is '${result}' != '${expected}'`, 'color:red');
+    } else {
+        console.log(`%c testGetColor ${open} ${close} is '${result}' PASSED`, 'color:green');
+    }
+}
+
+testGetColor(10, 10, equal);
+testGetColor(30, 10, red);
+testGetColor(5, 10, green);</pre>
+	<p> теперь мы будем писать код и сразу запускаем наши тесты, чтобы видеть что там вырисовывается
+		таким образом мы сразу представляем что мы ожидаем. А мы ожидаем что это свеча будет иметь
+		<ol>
+			<li>хвостики</li>
+			<li>тела</li>
+			<li>сама свеча расположена в правом углу каваса</li>
+			<li>вчеки в очереди рисуются от правого угла</li>
+			<li>закрашены</li>
+		</ol>
+		<br />
+		... всё, а теперь ебашим код пока не добъемся видимого результата
+		// повторю что - четкость масштабов и т.п. не важно<br/>
+		<a href="https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D0%B7%D0%B4%D0%B5%D0%BB%D0%B5%D0%BD%D0%B8%D0%B5_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Принцип - резделение ответсвенности</a><br/>
+		<a href="https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF_%D0%B5%D0%B4%D0%B8%D0%BD%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D0%B9_%D0%BE%D1%82%D0%B2%D0%B5%D1%82%D1%81%D1%82%D0%B2%D0%B5%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D0%B8">Принцип единственной ответственности</a><br/>
+		<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals">Template literals</a>
+	</p>
+	<pre>
+// ...простота задания может смущать - а суть задания в том чтобы понять подход в программировании через практику
+// разбить задачу на мелкие функции, местами кажется что они не очень толковые,
+// но это на первой итерации написания кода
+// на втором этапе мы их будет улучшать и создавать новые фукции 
+</pre>
+	<hr />
+<h1>Успехов, спрашивай любые уточняющие вопросы</h1>
+	<script>
+
+	</script>
+	<script>
+		var els = document.getElementsByTagName('pre');
+		console.log(els);
+		for (let i = 0; i < els.length; i++) {
+			hljs.highlightBlock(els[i]);
+		}</script>
+</body>
+
+</html>
